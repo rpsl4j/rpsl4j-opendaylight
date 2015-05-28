@@ -18,14 +18,20 @@ import org.rpsl4j.emitters.OutputEmitter;
 import org.rpsl4j.emitters.rpsldocument.BGPAutNum;
 import org.rpsl4j.emitters.rpsldocument.BGPInetRtr;
 import org.rpsl4j.emitters.rpsldocument.BGPPeer;
+import comp3500.abn.emitters.odlconfig.ODLReconnectStrategy;
 import net.ripe.db.whois.common.rpsl.AttributeType;
 import net.ripe.db.whois.common.rpsl.ObjectType;
 import net.ripe.db.whois.common.rpsl.RpslObject;
 
+/**
+ * Creates and emits an OpenDaylight BGP configuration file.
+ * @author Benjamin George Roberts
+ */
 public class ODLConfigEmitter implements OutputEmitter {
 	private static final String TEMPLATE_RESOURCE = "mustache/ODLConfigEmitter.mustache";
-	private Set<BGPInetRtr> speakerSet;
-	private Set<BGPPeer> peerSet;
+	Set<BGPInetRtr> speakerSet;
+	Set<BGPPeer> peerSet;
+	ODLReconnectStrategy reconnectStrategy = new ODLReconnectStrategy();
 
 	@Override
 	public String emit(Set<RpslObject> objects) {
@@ -47,8 +53,8 @@ public class ODLConfigEmitter implements OutputEmitter {
 
 	@Override
 	public void setArguments(Map<String, String> arguments) {
-		// TODO Auto-generated method stub
-
+		//Update the reconnect strategy using provided arguments
+		reconnectStrategy = new ODLReconnectStrategy(arguments);
 	}
 
 	/**
