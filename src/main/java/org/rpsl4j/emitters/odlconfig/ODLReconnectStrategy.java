@@ -3,7 +3,7 @@
  * All rights reserved.
  */
 
-package comp3500.abn.emitters.odlconfig;
+package org.rpsl4j.emitters.odlconfig;
 
 import java.util.Map;
 import java.util.Map.Entry;

@@ -3,7 +3,7 @@
  * All rights reserved.
  */
 
-package comp3500.abn.emitters;
+package org.rpsl4j.emitters.odlconfig;
 
 import static org.junit.Assert.*;
 
@@ -16,7 +16,7 @@ import net.ripe.db.whois.common.rpsl.RpslObject;
 
 import org.junit.Before;
 import org.junit.Test;
-
+import org.rpsl4j.emitters.odlconfig.ODLConfigEmitter;
 import org.rpsl4j.emitters.rpsldocument.BGPAutNum;
 import org.rpsl4j.emitters.rpsldocument.BGPInetRtr;
 import org.rpsl4j.emitters.rpsldocument.BGPPeer;

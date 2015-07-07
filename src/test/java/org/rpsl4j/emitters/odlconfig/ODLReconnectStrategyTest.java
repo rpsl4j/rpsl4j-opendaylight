@@ -3,7 +3,7 @@
  * All rights reserved.
  */
 
-package comp3500.abn.emitters.odlconfig;
+package org.rpsl4j.emitters.odlconfig;
 
 import static org.junit.Assert.*;
 
@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Test;
+import org.rpsl4j.emitters.odlconfig.ODLReconnectStrategy;
 
 public class ODLReconnectStrategyTest {
 

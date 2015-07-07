@@ -3,7 +3,7 @@
  * All rights reserved.
  */
 
-package comp3500.abn.emitters;
+package org.rpsl4j.emitters.odlconfig;
 
 import java.io.StringWriter;
 import java.util.HashMap;
@@ -18,7 +18,7 @@ import org.rpsl4j.emitters.OutputEmitter;
 import org.rpsl4j.emitters.rpsldocument.BGPAutNum;
 import org.rpsl4j.emitters.rpsldocument.BGPInetRtr;
 import org.rpsl4j.emitters.rpsldocument.BGPPeer;
-import comp3500.abn.emitters.odlconfig.ODLReconnectStrategy;
+import org.rpsl4j.emitters.odlconfig.ODLReconnectStrategy;
 import net.ripe.db.whois.common.rpsl.AttributeType;
 import net.ripe.db.whois.common.rpsl.ObjectType;
 import net.ripe.db.whois.common.rpsl.RpslObject;
