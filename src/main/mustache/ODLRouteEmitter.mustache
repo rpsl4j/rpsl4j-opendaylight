@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- ipv4-routes of {{name}}-app-rib -->
+<ipv4-routes xmlns="urn:opendaylight:params:xml:ns:yang:bgp-inet">
+  {{#routes}}
+  <ipv4-route>
+    <prefix>{{getRouteNetworkString}}/{{getRoutePrefix}}</prefix>
+    <attributes>
+      <ipv4-next-hop>
+        <global>{{getNextHopString}}</global>
+      </ipv4-next-hop><as-path/>
+      <local-pref>
+        <pref>100</pref> <!-- TODO support preference -->
+      </local-pref>
+    </attributes>
+  </ipv4-route>
+  <!----------------------------------------->
+  {{/routes}}
+</ipv4-routes>
+<! ------------------------------------------>

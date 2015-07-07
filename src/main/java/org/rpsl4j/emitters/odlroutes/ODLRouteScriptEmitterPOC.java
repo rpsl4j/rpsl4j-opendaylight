@@ -18,30 +18,19 @@ import org.rpsl4j.emitters.rpsldocument.BGPRpslDocument;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 
-/**
- * Emits the body for `ipv4-routes` put/post requests used to populate ODL route tables.
- * By default will output one for each peer, but the TARGET_PEER setting can be passed;
- * filtering the emitter down to a single peer at a time
- * @author Benjamin George Roberts
- */
-public class ODLRouteEmitter implements OutputEmitter {
-	private static String TARGET_PEER = null;
-	private static final String TEMPLATE_RESOURCE = "mustache/ODLRouteEmitter.mustache"; 
+public class ODLRouteScriptEmitterPOC implements OutputEmitter {
+	private static final String TEMPLATE_RESOURCE = "mustache/ODLConfigScriptEmitterPOC.mustache"; 
 	private static Mustache tempateRenderer = new DefaultMustacheFactory().compile(TEMPLATE_RESOURCE);
+	
+	static Set<BGPPeer> peers;
 	
 	@Override
 	public String emit(Set<RpslObject> objects) {
 		StringWriter outputWriter = new StringWriter();
 		BGPRpslDocument doc = new BGPRpslDocument(objects);
+		peers = doc.getPeerSet();
 		
-		//Run emitter for each peer
-		for(BGPPeer peer : doc.getPeerSet()) {
-			//If peer provided, ignore non matching ones
-			if(TARGET_PEER != null && !peer.getName().equals(TARGET_PEER))
-				continue;
-			
-			tempateRenderer.execute(outputWriter, peer);
-		}
+		tempateRenderer.execute(outputWriter, this);
 		
 		return outputWriter.toString();
 		
@@ -49,8 +38,7 @@ public class ODLRouteEmitter implements OutputEmitter {
 
 	@Override
 	public void setArguments(Map<String, String> arguments) {
-		if(arguments.containsKey("TARGET_PEER"))
-			TARGET_PEER = arguments.get("TARGET_PEER");
+		// TODO Auto-generated method stub
 		
 	}
 }
