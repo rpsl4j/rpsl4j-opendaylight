@@ -19,7 +19,7 @@ import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 
 public class ODLRouteScriptEmitterPOC implements OutputEmitter {
-	private static final String TEMPLATE_RESOURCE = "mustache/ODLConfigScriptEmitterPOC.mustache"; 
+	private static final String TEMPLATE_RESOURCE = "mustache/odlroutes/ODLRouteEmitterScript.mustache";
 	private static Mustache tempateRenderer = new DefaultMustacheFactory().compile(TEMPLATE_RESOURCE);
 	
 	static Set<BGPPeer> peers;
