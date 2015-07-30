@@ -17,9 +17,6 @@ import org.rpsl4j.emitters.rpsldocument.BGPInetRtr;
 import org.rpsl4j.emitters.rpsldocument.BGPPeer;
 import org.rpsl4j.emitters.rpsldocument.BGPRpslDocument;
 
-import com.github.mustachejava.DefaultMustacheFactory;
-import com.github.mustachejava.Mustache;
-
 import net.ripe.db.whois.common.rpsl.RpslObject;
 
 /**

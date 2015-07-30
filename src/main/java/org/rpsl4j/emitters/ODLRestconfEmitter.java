@@ -30,10 +30,10 @@ import java.util.Set;
 
 public abstract class ODLRestconfEmitter implements OutputEmitter {
 
-    private String  RESTCONF_URL        = "127.0.0.1",
-                      RESTCONF_USERNAME   = null,
-                      RESTCONF_PASSWORD   = null;
-    private int       RESTCONF_PORT       = 8181;
+    String  RESTCONF_ADDRESS        = "127.0.0.1",
+    		RESTCONF_USERNAME   = null,
+          	RESTCONF_PASSWORD   = null;
+    int    	RESTCONF_PORT       = 8181;
     private static final Set<Header>        httpClientHeaders = new HashSet<Header>();
 
     private HttpClient httpClient = getHttpClient();
@@ -46,8 +46,8 @@ public abstract class ODLRestconfEmitter implements OutputEmitter {
     public void setArguments(Map<String, String> arguments) {
         for(Entry<String, String> argument : arguments.entrySet()) {
             switch (argument.getKey()) {
-                case "RESTCONF_URL":
-                    RESTCONF_URL = argument.getValue();
+                case "RESTCONF_ADDRESS":
+                    RESTCONF_ADDRESS = argument.getValue();
                     break;
                 case "RESTCONF_PORT":
                     RESTCONF_PORT = Integer.parseInt(argument.getValue());
@@ -72,11 +72,11 @@ public abstract class ODLRestconfEmitter implements OutputEmitter {
      * Build a {@link CredentialsProvider} containing (if configured) the restconf username and password
      * @return credential provider to auth restconf requests with
      */
-    private CredentialsProvider getCredentialsProvider() {
+    CredentialsProvider getCredentialsProvider() {
         CredentialsProvider cp = new BasicCredentialsProvider();
         if(RESTCONF_USERNAME != null && RESTCONF_PASSWORD != null) {
             cp.setCredentials(
-                    new AuthScope(RESTCONF_URL, RESTCONF_PORT),
+                    new AuthScope(RESTCONF_ADDRESS, RESTCONF_PORT),
                     new UsernamePasswordCredentials(RESTCONF_USERNAME, RESTCONF_PASSWORD));
         }
         return cp;
@@ -86,7 +86,7 @@ public abstract class ODLRestconfEmitter implements OutputEmitter {
      * Build a {@link HttpClient} instance with the headers and configured credentials required by restconf
      * @return a restconf capable {@HttpClient}
      */
-    private HttpClient getHttpClient() {
+    HttpClient getHttpClient() {
         HttpClientBuilder builder = HttpClientBuilder.create();
 
         builder.setDefaultHeaders(httpClientHeaders).
@@ -105,7 +105,7 @@ public abstract class ODLRestconfEmitter implements OutputEmitter {
     protected HttpResponse executeHttpRequest(HttpRequest request) throws IOException {
         try {
             return httpClient.execute(
-                    new HttpHost(RESTCONF_URL, RESTCONF_PORT),
+                    new HttpHost(RESTCONF_ADDRESS, RESTCONF_PORT),
                     request);
         } catch (ClientProtocolException e) {
             throw new IOException(e);

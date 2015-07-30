@@ -6,7 +6,6 @@
 package org.rpsl4j.emitters.odlroutes;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,10 +16,8 @@ import net.ripe.db.whois.common.rpsl.RpslObject;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.BasicHttpEntity;
 import org.apache.http.entity.StringEntity;
 import org.rpsl4j.emitters.ODLRestconfEmitter;
-import org.rpsl4j.emitters.OutputEmitter;
 import org.rpsl4j.emitters.rpsldocument.BGPPeer;
 import org.rpsl4j.emitters.rpsldocument.BGPRpslDocument;
 
@@ -41,6 +38,7 @@ public class ODLRouteEmitter extends ODLRestconfEmitter {
     private static final String RIB_TABLE_FORMAT_STRING = "/restconf/config/bgp-rib:application-rib/" +
             "%s-app-rib/tables/bgp-types:ipv4-address-family/bgp-types:unicast-subsequent-address-family/";
 
+ 
 	@Override
 	public String emit(Set<RpslObject> objects) {
 		BGPRpslDocument doc = new BGPRpslDocument(objects);
