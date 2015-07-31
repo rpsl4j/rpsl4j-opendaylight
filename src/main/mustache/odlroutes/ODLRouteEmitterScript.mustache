@@ -13,12 +13,21 @@ data='<?xml version="1.0" encoding="UTF-8" standalone="no"?>
     <ipv4-route>
         <prefix>{{getRouteNetworkString}}/{{getRoutePrefix}}</prefix>
         <attributes>
+        {{#actions}}
             <ipv4-next-hop>
                 <global>{{getNextHopString}}</global>
             </ipv4-next-hop><as-path/>
+            {{#pref}}
             <local-pref>
-                <pref>100</pref> <!-- TODO support preference -->
+                <pref>{{pref}}</pref>
             </local-pref>
+            {{/pref}}
+            {{#med}}
+            <multi-exit-disc>
+                <med>{{med}}</med>
+            </multi-exit-disc>
+            {{/med}}
+        {{/actions}}
         </attributes>
     </ipv4-route>
     <!--****************************************-->
@@ -31,7 +40,7 @@ curl --request DELETE "$url"
 curl -H "Content-Type:application/xml" \
     --request POST \
     --data "$data" "$url"
-    
+
 ##################################################################
 ##################################################################
 {{/peers}}
