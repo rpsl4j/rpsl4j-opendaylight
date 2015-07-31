@@ -77,8 +77,13 @@
           <name>{{name}}</name>
           <host>{{peerAddress}}</host>
           <holdtimer>180</holdtimer>
-          <peer-role>ebgp</peer-role> <!-- Assume external BGP peers -->
+          {{#isInternalPeer}}
+          <peer-role>ibgp</peer-role>
+          {{/isInternalPeer}}
+          {{^isInternalPeer}}
+          <peer-role>ebgp</peer-role>
           <remote-as>{{peerAutNum}}</remote-as>
+          {{/isInternalPeer}}
           <advertized-table> <!-- Used as the route table for a peer/speaker relation -->
             <type xmlns:prefix="urn:opendaylight:params:xml:ns:yang:controller:bgp:rib:impl">prefix:bgp-table-type</type>
             <name>ipv4-unicast</name>
