@@ -30,9 +30,9 @@ import com.github.mustachejava.Mustache;
  * filtering the emitter down to a single peer at a time
  * @author Benjamin George Roberts
  */
-public class ODLRouteEmitter extends ODLRestconfEmitter {
+public class ODLRouteRestconfEmitter extends ODLRestconfEmitter {
 	private static String TARGET_PEER = null;
-	private static final String TEMPLATE_RESOURCE = "mustache/odlroutes/ODLRouteEmitter.mustache";
+	private static final String TEMPLATE_RESOURCE = "mustache/odlroutes/ODLRouteRestconfEmitter.mustache";
 	private static Mustache templateRenderer = new DefaultMustacheFactory().compile(TEMPLATE_RESOURCE);
 
     private static final String RIB_TABLE_FORMAT_STRING = "/restconf/config/bgp-rib:application-rib/" +

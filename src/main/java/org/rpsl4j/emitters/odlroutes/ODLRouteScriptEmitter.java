@@ -18,8 +18,8 @@ import org.rpsl4j.emitters.rpsldocument.BGPRpslDocument;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 
-public class ODLRouteScriptEmitterPOC implements OutputEmitter {
-	private static final String TEMPLATE_RESOURCE = "mustache/odlroutes/ODLRouteEmitterScript.mustache";
+public class ODLRouteScriptEmitter implements OutputEmitter {
+	private static final String TEMPLATE_RESOURCE = "mustache/odlroutes/ODLRouteScriptEmitter.mustache";
 	private static Mustache tempateRenderer = new DefaultMustacheFactory().compile(TEMPLATE_RESOURCE);
 	
 	static Set<BGPPeer> peers;
