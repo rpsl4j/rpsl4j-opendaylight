@@ -76,7 +76,7 @@
       <resource>
         <directory>src/main</directory>
         <includes>
-          <include>mustache/*.mustache</include>
+          <include>mustache/**/*.mustache</include>
         </includes>
       </resource>
     </resources>
