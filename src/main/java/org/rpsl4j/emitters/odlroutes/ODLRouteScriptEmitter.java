@@ -37,8 +37,6 @@ public class ODLRouteScriptEmitter implements OutputEmitter {
 	}
 
 	@Override
-	public void setArguments(Map<String, String> arguments) {
-		// TODO Auto-generated method stub
-		
+	public void setArguments(Map<String, String> arguments) {		
 	}
 }

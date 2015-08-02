@@ -69,14 +69,14 @@ public class ODLRouteRestconfEmitter extends ODLRestconfEmitter {
 
                 //Check for failure
                 if(r.getStatusLine().getStatusCode() != 204) {
-                    System.err.println(String.format("Posting routes failed (%d)", r.getStatusLine().getStatusCode()));
+                    System.out.println(String.format("Posting routes failed (%d)", r.getStatusLine().getStatusCode()));
 
                     if(r.getEntity() != null)
                         r.getEntity().writeTo(System.out);
                 }
             } catch(IOException e) {
                 //TODO separate error handling
-                System.err.println(String.format("Failed to inject %s routes: %s", peer.getName(), e.getMessage()));
+                System.out.println(String.format("Failed to inject %s routes: %s", peer.getName(), e.getMessage()));
                 e.printStackTrace();
             }
 
@@ -87,10 +87,10 @@ public class ODLRouteRestconfEmitter extends ODLRestconfEmitter {
 
 	@Override
 	public void setArguments(Map<String, String> paramArguments) {
-        //Make our own copy so we can pass it to superclass
-        Map<String, String> arguments = new HashMap<>(paramArguments);
-
-		if(arguments.containsKey("TARGET_PEER")) {
+		//Make our own copy so we can pass it to superclass
+		Map<String, String> arguments = new HashMap<>(paramArguments);
+        
+        if(arguments.containsKey("TARGET_PEER")) {
             TARGET_PEER = arguments.get("TARGET_PEER");
             arguments.remove("TARGET_PEER");
         }
