@@ -19,6 +19,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicHeader;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -38,6 +39,23 @@ public abstract class ODLRestconfEmitter implements OutputEmitter {
 
     private HttpClient httpClient = getHttpClient();
 
+    private static final Map<String, String> argumentList = new HashMap<String, String>();
+	
+	/**
+	 * Static initialiser to populate map of emitter arguments and initialise request headers
+	 */
+	static {
+		argumentList.put("RESTCONF_ADDRESS", "IP address of RESTCONF instance (default: 127.0.0.1)");
+		argumentList.put("RESTCONF_PORT", "Port of RESTCONF instance (default: 8181)");
+		argumentList.put("RESTCONF_USERNAME", "Username to authenticate with RESTCONF with (default: nil)");
+		argumentList.put("RESTCONF_PASSWORD", "Password to authenticate with RESTCONF with (default: nil)");
+	}
+	
+	@Override
+	public Map<String, String> validArguments() {
+		return new HashMap<String, String>(argumentList);
+	}
+    
     static {
         httpClientHeaders.add(new BasicHeader("Content-Type", "application/xml"));
     }

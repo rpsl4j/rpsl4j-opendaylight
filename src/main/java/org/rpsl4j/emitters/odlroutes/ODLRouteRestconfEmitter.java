@@ -38,6 +38,12 @@ public class ODLRouteRestconfEmitter extends ODLRestconfEmitter {
     private static final String RIB_TABLE_FORMAT_STRING = "/restconf/config/bgp-rib:application-rib/" +
             "%s-app-rib/tables/bgp-types:ipv4-address-family/bgp-types:unicast-subsequent-address-family/";
 
+    @Override
+	public Map<String, String> validArguments() {
+    	Map<String, String> superArgs = super.validArguments();
+    	superArgs.put("TARGET_PEER", "Name of peer to filter route injection to (default: nil)");
+    	return superArgs;
+    }
  
 	@Override
 	public String emit(Set<RpslObject> objects) {

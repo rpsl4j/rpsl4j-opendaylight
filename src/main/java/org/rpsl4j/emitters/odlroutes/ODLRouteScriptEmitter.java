@@ -6,6 +6,7 @@
 package org.rpsl4j.emitters.odlroutes;
 
 import java.io.StringWriter;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -39,4 +40,9 @@ public class ODLRouteScriptEmitter implements OutputEmitter {
 	@Override
 	public void setArguments(Map<String, String> arguments) {		
 	}
+	
+	@Override
+	public Map<String, String> validArguments() {
+    	return new HashMap<String, String>();
+    }
 }

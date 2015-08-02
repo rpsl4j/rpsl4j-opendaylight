@@ -6,6 +6,7 @@
 package org.rpsl4j.emitters.odlconfig;
 
 import java.io.StringWriter;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -29,6 +30,19 @@ public class ODLConfigEmitter implements OutputEmitter {
 	Set<BGPPeer> peerSet;
 	ODLReconnectStrategy reconnectStrategy = new ODLReconnectStrategy();
 
+	private static final Map<String, String> argumentList = new HashMap<String, String>();
+	
+	/**
+	 * Static initialiser to populate map of emitter arguments.
+	 * All arguments are passed to ODLReconnectStrategy, so we add one for each of its params.
+	 */
+	static {
+		argumentList.put("BGP_RECONNECT_SLEEP_MIN", "Minimum time to wait between BGP reconnect attempts (ms, default: 1000)");
+		argumentList.put("BGP_RECONNECT_SLEEP_MAX", "Maximum time to wait between BGP reconnect attempts (ms, default: 180,000)");
+		argumentList.put("BGP_RECONNCET_CONNECT_TIME", "Length of connection attempt (ms, default: 5000)");
+		argumentList.put("BGP_RECONNCET_SLEEP_FACTOR", "Factor to increase sleep time by on successive reconnect attempts (decimal, default: 2.0)");
+	}
+	
 	@Override
 	public String emit(Set<RpslObject> objects) {	
 		BGPRpslDocument doc = new BGPRpslDocument(objects);
@@ -53,5 +67,10 @@ public class ODLConfigEmitter implements OutputEmitter {
 	public void setArguments(Map<String, String> arguments) {
 		//Update the reconnect strategy using provided arguments
 		reconnectStrategy = new ODLReconnectStrategy(arguments);
+	}
+
+	@Override
+	public Map<String, String> validArguments() {
+		return new HashMap<String, String>(argumentList);
 	}
 }
