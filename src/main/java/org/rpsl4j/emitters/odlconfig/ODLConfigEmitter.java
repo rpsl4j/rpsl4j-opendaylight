@@ -17,9 +17,6 @@ import org.rpsl4j.emitters.rpsldocument.BGPInetRtr;
 import org.rpsl4j.emitters.rpsldocument.BGPPeer;
 import org.rpsl4j.emitters.rpsldocument.BGPRpslDocument;
 
-import com.github.mustachejava.DefaultMustacheFactory;
-import com.github.mustachejava.Mustache;
-
 import net.ripe.db.whois.common.rpsl.RpslObject;
 
 /**
@@ -27,7 +24,7 @@ import net.ripe.db.whois.common.rpsl.RpslObject;
  * @author Benjamin George Roberts
  */
 public class ODLConfigEmitter implements OutputEmitter {
-	private static final String TEMPLATE_RESOURCE = "mustache/ODLConfigEmitter.mustache";
+	private static final String TEMPLATE_RESOURCE = "mustache/odlconfig/ODLConfigEmitter.mustache";
 	Set<BGPInetRtr> speakerSet;
 	Set<BGPPeer> peerSet;
 	ODLReconnectStrategy reconnectStrategy = new ODLReconnectStrategy();

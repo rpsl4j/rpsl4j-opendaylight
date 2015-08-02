@@ -1,0 +1,46 @@
+#!/bin/bash
+IP="127.0.0.1"
+PORT="8181"
+
+{{#peers}}
+# Post routes to {{name}}
+
+url="http://$IP:$PORT/restconf/config/bgp-rib:application-rib/{{name}}-app-rib/tables/bgp-types:ipv4-address-family/bgp-types:unicast-subsequent-address-family/"
+data='<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- ipv4-routes of {{name}}-app-rib -->
+<ipv4-routes xmlns="urn:opendaylight:params:xml:ns:yang:bgp-inet">
+{{#routes}}
+    <ipv4-route>
+        <prefix>{{getRouteNetworkString}}/{{getRoutePrefix}}</prefix>
+        <attributes>
+        {{#actions}}
+            <ipv4-next-hop>
+                <global>{{getNextHopString}}</global>
+            </ipv4-next-hop><as-path/>
+            {{#pref}}
+            <local-pref>
+                <pref>{{pref}}</pref>
+            </local-pref>
+            {{/pref}}
+            {{#med}}
+            <multi-exit-disc>
+                <med>{{med}}</med>
+            </multi-exit-disc>
+            {{/med}}
+        {{/actions}}
+        </attributes>
+    </ipv4-route>
+    <!--****************************************-->
+{{/routes}}
+</ipv4-routes>
+<!--****************************************-->
+'
+
+curl --request DELETE "$url"
+curl -H "Content-Type:application/xml" \
+    --request POST \
+    --data "$data" "$url"
+
+##################################################################
+##################################################################
+{{/peers}}
