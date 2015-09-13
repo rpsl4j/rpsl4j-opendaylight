@@ -77,14 +77,6 @@
 
   <build>
     <!-- Add mustache templates to package -->
-    <resources>
-      <resource>
-        <directory>src/main</directory>
-        <includes>
-          <include>mustache/**/*.mustache</include>
-        </includes>
-      </resource>
-    </resources>
     <plugins>
       <!-- Set Java7 as source/target for compilation -->
       <plugin>
