@@ -5,6 +5,8 @@
 
 package org.rpsl4j.emitters;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.apache.http.Header;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
@@ -30,6 +32,8 @@ import java.util.Set;
  */
 
 public abstract class ODLRestconfEmitter implements OutputEmitter {
+	
+	final static Logger log = LoggerFactory.getLogger(ODLRestconfEmitter.class);
 
     String  RESTCONF_ADDRESS        = "127.0.0.1",
     		RESTCONF_USERNAME   = null,
@@ -38,6 +42,8 @@ public abstract class ODLRestconfEmitter implements OutputEmitter {
     private static final Set<Header>        httpClientHeaders = new HashSet<Header>();
 
     private HttpClient httpClient = getHttpClient();
+    
+    
 
     private static final Map<String, String> argumentList = new HashMap<String, String>();
 	
@@ -77,7 +83,7 @@ public abstract class ODLRestconfEmitter implements OutputEmitter {
                     RESTCONF_PASSWORD = argument.getValue();
                     break;
                 default:
-                    System.err.println("Unknown emitter argument: " + argument.getKey());
+                    log.warn("Unknown emitter argument: " + argument.getKey());
                     break;
             }
         }

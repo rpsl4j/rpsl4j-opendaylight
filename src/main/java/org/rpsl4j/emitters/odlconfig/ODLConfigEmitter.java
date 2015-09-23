@@ -20,6 +20,8 @@ import org.rpsl4j.emitters.rpsldocument.BGPRpslDocument;
 
 import net.ripe.db.whois.common.rpsl.RpslObject;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 /**
  * Creates and emits an OpenDaylight BGP configuration file.
  * @author Benjamin George Roberts
@@ -29,6 +31,8 @@ public class ODLConfigEmitter implements OutputEmitter {
 	Set<BGPInetRtr> speakerSet;
 	Set<BGPPeer> peerSet;
 	ODLReconnectStrategy reconnectStrategy = new ODLReconnectStrategy();
+	
+	final static Logger log = LoggerFactory.getLogger(ODLConfigEmitter.class);
 
 	private static final Map<String, String> argumentList = new HashMap<String, String>();
 	

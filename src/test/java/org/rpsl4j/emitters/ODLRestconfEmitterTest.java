@@ -2,6 +2,9 @@ package org.rpsl4j.emitters;
 
 import static org.junit.Assert.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -15,6 +18,7 @@ import org.junit.Test;
 
 public class ODLRestconfEmitterTest {
 
+	final static Logger log = LoggerFactory.getLogger(ODLRestconfEmitterTest.class);
 	/**
 	 * Dummy ODLRestconfEmitter so that tests can be made against non abstract instance	 *
 	 */

@@ -15,8 +15,11 @@ import net.ripe.db.whois.common.rpsl.RpslObject;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ODLConfigEmitterTest {
+	final static Logger log = LoggerFactory.getLogger(ODLConfigEmitterTest.class);
 	private final String AUTNUM_EXAMPLE = "aut-num: AS1\n"
 			+ "as-name: First AS\n"
 			+ "export: to AS3 2.2.2.1 at 1.1.1.1 announce 3.3.3.0/24\n\n"

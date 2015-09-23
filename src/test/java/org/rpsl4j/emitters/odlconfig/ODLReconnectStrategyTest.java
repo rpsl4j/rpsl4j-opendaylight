@@ -12,9 +12,13 @@ import java.util.Map;
 
 import org.junit.Test;
 import org.rpsl4j.emitters.odlconfig.ODLReconnectStrategy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ODLReconnectStrategyTest {
 
+	final static Logger log = LoggerFactory.getLogger(ODLReconnectStrategyTest.class);
+	
 	@Test
 	public void testFieldAssignment() {
 		Map<String, String> argMap = new HashMap<String, String>();
