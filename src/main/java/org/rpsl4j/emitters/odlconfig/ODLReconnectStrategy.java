@@ -6,6 +6,10 @@
 package org.rpsl4j.emitters.odlconfig;
 
 import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Map.Entry;
 
 /**
@@ -21,6 +25,7 @@ public class ODLReconnectStrategy {
 			BGP_RECONNCET_CONNECT_TIME 	= 5000;
 	double 	BGP_RECONNCET_SLEEP_FACTOR 	= 2.0;
 	
+	final static Logger log = LoggerFactory.getLogger(ODLReconnectStrategy.class);
 	/**
 	 * Instantiate an {@link ODLReconnectStrategy} using the default arguments.
 	 */
@@ -42,7 +47,7 @@ public class ODLReconnectStrategy {
 				}
 			} catch(NumberFormatException e) {
 				//We failed to parse an integer or double
-				System.err.println("Failed to parse value: " + arg.getValue());
+				log.warn("Failed to parse value: " + arg.getValue());
 			}
 		}
 	}

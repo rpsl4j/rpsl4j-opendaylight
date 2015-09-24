@@ -11,6 +11,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.ripe.db.whois.common.rpsl.RpslObject;
 
 import org.apache.http.HttpResponse;
@@ -31,6 +34,7 @@ import com.github.mustachejava.Mustache;
  * @author Benjamin George Roberts
  */
 public class ODLRouteRestconfEmitter extends ODLRestconfEmitter {
+	final static Logger log = LoggerFactory.getLogger(ODLRouteRestconfEmitter.class);
 	private static String TARGET_PEER = null;
 	private static final String TEMPLATE_RESOURCE = "mustache/odlroutes/ODLRouteRestconfEmitter.mustache";
 	private static Mustache templateRenderer = new DefaultMustacheFactory().compile(TEMPLATE_RESOURCE);
@@ -75,15 +79,14 @@ public class ODLRouteRestconfEmitter extends ODLRestconfEmitter {
 
                 //Check for failure
                 if(r.getStatusLine().getStatusCode() != 204) {
-                    System.out.println(String.format("Posting routes failed (%d)", r.getStatusLine().getStatusCode()));
+                    log.warn(String.format("Posting routes failed (%d)", r.getStatusLine().getStatusCode()));
 
                     if(r.getEntity() != null)
                         r.getEntity().writeTo(System.out);
                 }
             } catch(IOException e) {
                 //TODO separate error handling
-                System.out.println(String.format("Failed to inject %s routes: %s", peer.getName(), e.getMessage()));
-                e.printStackTrace();
+                log.error(String.format("Failed to inject %s routes: %s", peer.getName(), e.getMessage()));
             }
 
 		}
