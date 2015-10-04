@@ -53,8 +53,8 @@ public abstract class ODLRestconfEmitter implements OutputEmitter {
 	static {
 		argumentList.put("RESTCONF_ADDRESS", "IP address of RESTCONF instance (default: 127.0.0.1)");
 		argumentList.put("RESTCONF_PORT", "Port of RESTCONF instance (default: 8181)");
-		argumentList.put("RESTCONF_USERNAME", "Username to authenticate with RESTCONF with (default: nil)");
-		argumentList.put("RESTCONF_PASSWORD", "Password to authenticate with RESTCONF with (default: nil)");
+		argumentList.put("RESTCONF_USERNAME", "Username to authenticate to RESTCONF with (default: nil)");
+		argumentList.put("RESTCONF_PASSWORD", "Password to authenticate to RESTCONF with (default: nil)");
 	}
 	
 	@Override

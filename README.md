@@ -29,21 +29,21 @@ When run, the emitter will generate the contents of the 41-bgp.xml file correspo
  + __BGP_RECONNECT_SLEEP_MIN__: Minimum time to wait between BGP reconnect attempts (ms, default: 1000)
 
 #### Effects ####
-This emitter instantiates a BGP Speaker for each `ifaddr` of an `inet-rtr` object, and establishes a peering connection to each peer of the same object.
+This emitter instantiates a BGP Speaker for each `ifaddr` of an `inet-rtr` object, and establishes a peering connection to each peer of the same `inet-rtr`.
 A BGP "Application peer" is also instantiated for each real peer to facilitate the injection of routes by the other two emitters.
 The module does not add any routes to the peer's outgoing routing tabes; this can only be done via RESTConf and is handled by the other two emitters.
 
 ### `org.rpsl4j.emitters.odlroutes.ODLRouteRestconfEmitter` ###
 #### Purpose ####
-Post the route objects exported to configured peers based on the provided `aut-num` routing policies.
+Post the route objects exported to configured peer's based on the provided `aut-num` routing policies.
 This module uses the OpenDaylight RESTConf interface.
 
 #### Arguments ####
  + __RESTCONF_PORT__: Port of RESTCONF instance (default: 8181)
- + __RESTCONF_PASSWORD__ : Password to authenticate with RESTCONF with (default: nil)
+ + __RESTCONF_PASSWORD__ : Password to authenticate to RESTCONF with (default: nil)
  + __RESTCONF_ADDRESS__: IP address of RESTCONF instance (default: 127.0.0.1)
  + __TARGET_PEER__: Name of peer to filter route injection to (default: nil)
- + __RESTCONF_USERNAME__: Username to authenticate with RESTCONF with (default: nil)
+ + __RESTCONF_USERNAME__: Username to authenticate to RESTCONF with (default: nil)
 
 #### Effects ####
 Before posting the exported routes to a peers outgoing routing table, it will first drop any existing routes from the table.
